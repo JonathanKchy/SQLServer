@@ -1,0 +1,13 @@
+select  catalogos.man_ciudad.ciudad,cliente.cli_contacto.contacto,certificado.cer_solicitud.identificacion,cliente.cli_cliente.primerNombre,cliente.cli_cliente.segundoNombre,cliente.cli_cliente.primerApellido,cliente.cli_cliente.segundoApellido,catalogos.man_actividadEconomica.actividadEconomica
+from cliente.cli_contacto join catalogos.man_tipoContacto on cliente.cli_contacto.idTipoContacto=catalogos.man_tipoContacto.idTipoContacto
+               join certificado.cer_solicitud on certificado.cer_solicitud.idSolicitud=cliente.cli_contacto.idSolicitud
+	       join cliente.cli_cliente on cliente.cli_cliente.identificacion=certificado.cer_solicitud.identificacion
+	       join cliente.cli_actividad on cliente.cli_actividad.idSolicitud=certificado.cer_solicitud.idSolicitud
+	       join catalogos.man_actividadEconomica on catalogos.man_actividadEconomica.idActividadEconomica=cliente.cli_actividad.idActividadEconomica
+	       join cliente.cli_direccion on cliente.cli_direccion.idSolicitud=certificado.cer_solicitud.idSolicitud
+		   join catalogos.man_ciudad on cliente.cli_direccion.idCiudad=catalogos.man_ciudad.idCiudad
+where   cliente.cli_contacto.idCategoria=1 and cliente.cli_contacto.idTipoContacto=3 and certificado.cer_solicitud.idEstado=39 and cliente.cli_direccion.codigoPostal is not null
+
+
+200.25.207.114
+200.25.197.8
