@@ -1,4 +1,4 @@
-select  catalogos.man_ciudad.ciudad,cliente.cli_contacto.contacto,certificado.cer_solicitud.identificacion,cliente.cli_cliente.primerNombre,cliente.cli_cliente.segundoNombre,cliente.cli_cliente.primerApellido,cliente.cli_cliente.segundoApellido,catalogos.man_actividadEconomica.actividadEconomica
+select  convert (varchar,certificado.cer_solicitud.fechaRegistro,3) as fecha,convert (varchar,certificado.cer_solicitud.fechaRegistro,108) as hora,catalogos.man_ciudad.ciudad,cliente.cli_contacto.contacto,certificado.cer_solicitud.identificacion,cliente.cli_cliente.primerNombre,cliente.cli_cliente.segundoNombre,cliente.cli_cliente.primerApellido,cliente.cli_cliente.segundoApellido,catalogos.man_actividadEconomica.actividadEconomica
 from cliente.cli_contacto join catalogos.man_tipoContacto on cliente.cli_contacto.idTipoContacto=catalogos.man_tipoContacto.idTipoContacto
                join certificado.cer_solicitud on certificado.cer_solicitud.idSolicitud=cliente.cli_contacto.idSolicitud
 	       join cliente.cli_cliente on cliente.cli_cliente.identificacion=certificado.cer_solicitud.identificacion
